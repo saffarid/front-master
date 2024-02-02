@@ -26,13 +26,13 @@
                         <template v-if="value === Object(value)">
                             <template v-if="titlesRights != undefined && key in titlesRights">
                                 <List :templateRights="templateRights[key]" :titlesRights="titlesRights[key].items"
-                                      :rights="rights?rights[key]:undefined" :titles="localTitles.splice(1)"
+                                      :rights="rights?rights[key]:undefined" :titles="nextTitles"
                                       :style="{'--offset': Object.keys(templateRights).indexOf(key)}"
                                       @keyChange="stackChange" />
                             </template>
                             <template v-else>
                                 <List :templateRights="templateRights[key]" :titlesRights="undefined"
-                                      :rights="rights?rights[key]:undefined" :titles="localTitles.splice(1)"
+                                      :rights="rights?rights[key]:undefined" :titles="nextTitles"
                                       :style="{'--offset': Object.keys(templateRights).indexOf(key)}"
                                       @keyChange="stackChange" />
                             </template>
@@ -47,8 +47,8 @@
 <script>
 import List from "./List";
 import { ref, toRaw } from "vue";
-import SvgArrowRight from "@/components/SvgArrowRight";
 import { cloneObject } from "@/utils/functions";
+import SvgArrowRight from "@/components/right-editor/SvgArrowRight";
 
 export default {
     name: "List",
@@ -74,6 +74,7 @@ export default {
         const hoveredKey = ref(defaultKey);
 
         const localTitles = cloneObject(props.titles);
+        const nextTitles = localTitles.splice(1)
         const title = toRaw(props.titles[0]);
 
         const mouseEv = (key) => {
@@ -92,7 +93,7 @@ export default {
             hoveredKey,
             mouseEv, defaultKey,
             change, stackChange,
-            localTitles, title
+            localTitles, title, nextTitles
         };
     }
 };

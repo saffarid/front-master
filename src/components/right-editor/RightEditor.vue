@@ -18,18 +18,18 @@
 import {
     onMounted,
     reactive,
-    ref, toRaw
+    ref
 } from "vue";
-import List from "@/components/List";
 import set from "set-value";
 import API from "@/api/api";
 import { cloneObject } from "@/utils/functions";
+import List from "@/components/right-editor/List";
 
 export default {
     name: "RightEditor",
     components: { List },
 
-    setup(props) {
+    setup( ) {
         const editor = ref(null);
         const perm = reactive({});
         const initTemplatePerm = {};

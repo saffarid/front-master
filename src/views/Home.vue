@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import RightEditor from "@/components/RightEditor";
+import RightEditor from "@/components/right-editor/RightEditor";
 
 export default {
     name: "Home",
